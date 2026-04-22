@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block title %}Statistics{% endblock %}
+
+{% block content %}
+<h1>Bird Dataset Statistics</h1>
+<a href="{{ url_for('index') }}" class="btn btn-secondary mb-3">Back to Dataset</a>
+
+<div class="row">
+        {% if plots.delka %}
+        <div class="col-md-6">
+            <h3>Délka Distribution</h3>
+            <img src="data:image/png;base64,{{ plots.delka }}" class="img-fluid" alt="Délka Distribution">
+        </div>
+        {% endif %}
+        {% if plots.hmotnost %}
+        <div class="col-md-6">
+            <h3>Hmotnost Distribution</h3>
+            <img src="data:image/png;base64,{{ plots.hmotnost }}" class="img-fluid" alt="Hmotnost Distribution">
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="row mt-4">
+        {% if plots.rozpeti %}
+        <div class="col-md-6">
+            <h3>Rozpětí Distribution</h3>
+            <img src="data:image/png;base64,{{ plots.rozpeti }}" class="img-fluid" alt="Rozpětí Distribution">
+        </div>
+        {% endif %}
+        {% if plots.status %}
+        <div class="col-md-6">
+            <h3>Status Ohrožení</h3>
+            <img src="data:image/png;base64,{{ plots.status }}" class="img-fluid" alt="Status Ohrožení">
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="row mt-4">
+        {% if plots.potrava %}
+        <div class="col-md-6">
+            <h3>Typ potravy</h3>
+            <img src="data:image/png;base64,{{ plots.potrava }}" class="img-fluid" alt="Typ potravy">
+    {% endif %}
+</div>
+
+<h3 class="mt-4">Data Summary</h3>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Metric</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Celkový počet ptáků</td>
+                <td>{{ df.shape[0] }}</td>
+            </tr>
+            <tr>
+                <td>Průměrná délka (cm)</td>
+                <td>{{ "%.2f"|format(df['delka_cm'].mean()) if not df['delka_cm'].isnull().all() else 'N/A' }}</td>
+            </tr>
+            <tr>
+                <td>Průměrná hmotnost (g)</td>
+                <td>{{ "%.2f"|format(df['hmotnost_g'].mean()) if not df['hmotnost_g'].isnull().all() else 'N/A' }}</td>
+            </tr>
+            <tr>
+                <td>Průměrné rozpětí (cm)</td>
+                <td>{{ "%.2f"|format(df['rozpeti_cm'].mean()) if not df['rozpeti_cm'].isnull().all() else 'N/A' }}</td>
+            </tr>
+            <tr>
+                <td>Průměrná snuška (ks)</td>
+                <td>{{ "%.2f"|format(df['snuska_ks'].mean()) if not df['snuska_ks'].isnull().all() else 'N/A' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

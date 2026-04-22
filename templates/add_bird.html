@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Add Bird{% endblock %}
+
+{% block content %}
+<h1>Add New Bird</h1>
+<form method="POST">
+    <div class="mb-3">
+        <label for="nazev" class="form-label">Název</label>
+        <input type="text" class="form-control" id="nazev" name="nazev" required>
+    </div>
+    <div class="mb-3">
+        <label for="vedecky_nazev" class="form-label">Vědecký název</label>
+        <input type="text" class="form-control" id="vedecky_nazev" name="vedecky_nazev" required>
+    </div>
+    <div class="mb-3">
+        <label for="rad" class="form-label">Řád</label>
+        <input type="text" class="form-control" id="rad" name="rad">
+    </div>
+    <div class="mb-3">
+        <label for="celed" class="form-label">Čeleď</label>
+        <input type="text" class="form-control" id="celed" name="celed">
+    </div>
+    <div class="mb-3">
+        <label for="delka_cm" class="form-label">Délka (cm)</label>
+        <input type="number" step="0.1" class="form-control" id="delka_cm" name="delka_cm">
+    </div>
+    <div class="mb-3">
+        <label for="rozpeti_cm" class="form-label">Rozpětí (cm)</label>
+        <input type="number" step="0.1" class="form-control" id="rozpeti_cm" name="rozpeti_cm">
+    </div>
+    <div class="mb-3">
+        <label for="hmotnost_g" class="form-label">Hmotnost (g)</label>
+        <input type="number" step="0.1" class="form-control" id="hmotnost_g" name="hmotnost_g">
+    </div>
+    <div class="mb-3">
+        <label for="status_ohrozeni" class="form-label">Status ohrožení</label>
+        <select class="form-control" id="status_ohrozeni" name="status_ohrozeni">
+            <option value="">Vyberte status</option>
+            <option value="Málo dotčený">Málo dotčený</option>
+            <option value="Téměř ohrožený">Téměř ohrožený</option>
+            <option value="Zranitelný">Zranitelný</option>
+            <option value="Ohrožený">Ohrožený</option>
+            <option value="Kriticky ohrožený">Kriticky ohrožený</option>
+            <option value="Vyhubený">Vyhubený</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="typ_potravy" class="form-label">Typ potravy</label>
+        <input type="text" class="form-control" id="typ_potravy" name="typ_potravy">
+    </div>
+    <div class="mb-3">
+        <label for="migrace" class="form-label">Migrace</label>
+        <select class="form-control" id="migrace" name="migrace">
+            <option value="0">Ne</option>
+            <option value="1">Ano</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="vyskyt_kontinent" class="form-label">Výskyt kontinent</label>
+        <input type="text" class="form-control" id="vyskyt_kontinent" name="vyskyt_kontinent">
+    </div>
+    <div class="mb-3">
+        <label for="snuska_ks" class="form-label">Snuška (ks)</label>
+        <input type="number" step="0.1" class="form-control" id="snuska_ks" name="snuska_ks">
+    </div>
+    <button type="submit" class="btn btn-primary">Add Bird</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+</form>
+{% endblock %}

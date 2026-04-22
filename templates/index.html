@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Bird Dataset{% endblock %}
+
+{% block content %}
+<h1>Bird Dataset</h1>
+<a href="{{ url_for('add_bird') }}" class="btn btn-primary mb-3">Add New Bird</a>
+<a href="{{ url_for('stats') }}" class="btn btn-secondary mb-3">View Statistics</a>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Název</th>
+                <th>Vědecký název</th>
+                <th>Řád</th>
+                <th>Čeleď</th>
+                <th>Délka (cm)</th>
+                <th>Rozpětí (cm)</th>
+                <th>Hmotnost (g)</th>
+                <th>Status ohrožení</th>
+                <th>Typ potravy</th>
+                <th>Migrace</th>
+                <th>Kontinent</th>
+                <th>Snuška (ks)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bird in birds %}
+            <tr>
+                <td>{{ bird.nazev }}</td>
+                <td>{{ bird.vedecky_nazev }}</td>
+                <td>{{ bird.rad }}</td>
+                <td>{{ bird.celed }}</td>
+                <td>{{ bird.delka_cm if bird.delka_cm else '-' }}</td>
+                <td>{{ bird.rozpeti_cm if bird.rozpeti_cm else '-' }}</td>
+                <td>{{ bird.hmotnost_g if bird.hmotnost_g else '-' }}</td>
+                <td>{{ bird.status_ohrozeni }}</td>
+                <td>{{ bird.typ_potravy }}</td>
+                <td>{{ 'Ano' if bird.migrace else 'Ne' }}</td>
+                <td>{{ bird.vyskyt_kontinent }}</td>
+                <td>{{ bird.snuska_ks if bird.snuska_ks else '-' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
