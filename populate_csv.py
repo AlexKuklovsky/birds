@@ -4,6 +4,7 @@ from models import Bird
 
 def populate_from_csv():
     with app.app_context():
+        db.drop_all()
         db.create_all()
         
         df = pd.read_csv('dataset_ptaci_final.csv')
